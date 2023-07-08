@@ -1,15 +1,18 @@
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import './global.css'
+import { queryClient } from './services/queryCliente'
+import { QueryClientProvider } from '@tanstack/react-query'
 
 
 function App() {
 
   return (
     <>
-      <Navbar />
-      <Outlet/>
+      <QueryClientProvider client={ queryClient }>
+        <Navbar />
+        <Outlet />
+      </QueryClientProvider>
     </>
   )
 }

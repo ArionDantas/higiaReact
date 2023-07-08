@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.ul-client {
+    list-style: none;
+}
+
+.link-client {
+    text-decoration: none;
+    color: white;
+}
+
+.div-link {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: black;
+
+}

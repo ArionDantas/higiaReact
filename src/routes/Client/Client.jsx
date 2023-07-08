@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom"
+// import NavbarClient from "../../components/NavbarClient/NavbarClient"
+import ResultClients from "../../components/ResultClients/ResultClients"
 
 const Client = () => {
+
+
   return (
     <div className="section-container">
-        <div className="content">
-            <h1>Aqui é cliente</h1>
-        </div>
+      <div className="content">
+        <ResultClients />
+      </div>
     </div>
   )
 }
