@@ -12,7 +12,6 @@ import Dashboard from './routes/Dashboard'
 import ViewClient from './components/ViewClient/ViewClient';
 import EditClient from './components/EditClient/EditClient';
 
-
 const router = createBrowserRouter([
   {
     path: '/',

@@ -22,8 +22,8 @@ const FiltersClient = ({ data, setFilteredData }) => {
 
   return (
     <div className="filters shadow-sm px-2 py-3 rounded">
-      <div class="header-filter d-flex align-content-center gap-2">
-      <TuneIcon/>
+      <div className="header-filter d-flex align-content-center gap-2">
+        <TuneIcon />
         <h6>Filtros de pesquisa</h6>
       </div>
       <hr />

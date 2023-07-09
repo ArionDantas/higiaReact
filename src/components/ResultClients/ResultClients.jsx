@@ -25,7 +25,6 @@ const ResultClients = () => {
         const ano = dataObject.getFullYear();
         const dataFormatted = `${dia < 10 ? '0' + dia : dia}/${mes < 10 ? '0' + mes : mes}/${ano}`
         return dataFormatted
-
     }
 
     const { data: initialData, isLoading } = useQuery({
@@ -69,55 +68,58 @@ const ResultClients = () => {
 
             <div className="table-result shadow px-2 py-3 mt-4 rounded">
 
-                <div class="result-filter d-flex align-content-center gap-2">
-                    <ChecklistIcon/>
+                <div className="result-filter d-flex align-content-center gap-2">
+                    <ChecklistIcon />
                     <h6>Resultado pesquisa</h6>
                 </div>
-                <hr/>
+                <hr />
 
-                    <table className="table table-hover align-middle">
-                        <thead className='table'>
-                            <tr>
-                                <th>CPF</th>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>Telefone</th>
-                                <th>Data de aniversário</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listagem-clientes">
-                            {(isLoading || isLoadingSearch) ? (
+                <table className="table table-hover align-middle">
+                    <thead className='table'>
+                        <tr>
+                            <th>CPF</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Data de aniversário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listagem-clientes">
+                        {(isLoading || isLoadingSearch) ? (
+                            <>
                                 <LoadingSpinner />
-                            ) : (
-                                filteredData?.map(clients => (
-                                    <tr key={clients.cpf}>
-                                        <td>{clients.cpf}</td>
-                                        <td>{clients.firstName} {clients.lastName}</td>
-                                        <td>{clients.email}</td>
-                                        <td>{clients.phone}</td>
-                                        <td>{dateFormatter(clients.birthDate)}</td>
-                                        <td className="text-center">
-                                            <div className='d-flex gap-1'>
-                                                <Link to={`/client/viewClient/1`}>
-                                                    <button type="button" className="btn btn-primary">
-                                                        <VisibilityIcon />
-                                                    </button>
-                                                </Link>
-                                                <Link to={`/client/editClient/1`}>
-                                                    <button type="button" className="btn btn-danger">
-                                                        <EditIcon />
-                                                    </button>
-                                                </Link>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
+                            </>
+                        ) : (
+                            filteredData?.map(clients => (
+                                <tr key={clients.cpf}>
+                                    <td>{clients.cpf}</td>
+                                    <td>{clients.firstName} {clients.lastName}</td>
+                                    <td>{clients.email}</td>
+                                    <td>{clients.phone}</td>
+                                    <td>{dateFormatter(clients.birthDate)}</td>
+                                    <td className="text-center">
+                                        <div className='d-flex gap-1'>
+                                            <Link to={`/client/viewClient/1`}>
+                                                <button type="button" className="btn btn-primary">
+                                                    <VisibilityIcon
+                                                    />
+                                                </button>
+                                            </Link>
+                                            <Link to={`/client/editClient/1`}>
+                                                <button type="button" className="btn btn-danger">
+                                                    <EditIcon />
+                                                </button>
+                                            </Link>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </div >
     );
 };
 
