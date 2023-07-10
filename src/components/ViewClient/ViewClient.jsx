@@ -38,7 +38,7 @@ const ViewClient = () => {
 
                 <div className="row">
                     <div className="col">
-                        <div className='content-view-client shadow-sm`~ rounded p-5'>
+                        <div className='content-view-client shadow rounded p-5'>
                             <h1 className='mb-4'>Visualizar cliente</h1>
 
                             {

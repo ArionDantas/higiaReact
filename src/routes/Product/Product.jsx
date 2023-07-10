@@ -1,10 +1,11 @@
 import React from 'react'
+import ResultProducts from '../../components/ResultProducts/ResultProducts'
 
 const Product = () => {
   return (
     <div className="section-container">
         <div className="content">
-            <h1>Aqui é produto</h1>
+            <ResultProducts />
         </div>
     </div>
   )
