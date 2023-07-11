@@ -14,6 +14,7 @@ import EditClient from './components/EditClient/EditClient';
 import EditProduct from './components/EditProduct/EditProduct';
 import ViewProduct from './components/ViewProduct/ViewProduct'
 import NewProduct from './components/NewProduct/NewProduct';
+import NotFound from './components/NotFound/NotFound';
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: '/product/editProduct/:cpf',
         element: <EditProduct />
+      },
+      {
+        path: '*',
+        element: <NotFound/>
       }
 
     ]
