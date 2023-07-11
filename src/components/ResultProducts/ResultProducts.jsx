@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link } from 'react-router-dom';
 import ChecklistIcon from '@mui/icons-material/Checklist';
+import AddIcon from '@mui/icons-material/Add';
 
 
 const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/customers/all';
@@ -35,9 +36,25 @@ const ResultProducts = () => {
 
             <div className="table-result shadow px-2 py-3 mt-4 rounded">
 
-                <div className="result-filter d-flex align-content-center gap-2">
-                    <ChecklistIcon />
-                    <h6>Resultado pesquisa</h6>
+                <div className="result-filter d-flex align-content-center justify-align-content-between gap-2 w-100">
+                    <div className=' d-flex align-content-center gap-2 w-100'>
+                        <ChecklistIcon />
+                        <h6 className='m-0'>Resultado pesquisa</h6>
+                    </div>
+                    <div>
+
+                    <Link to={'/product/newProduct'}>
+                        <button
+                            type="button"
+                            className="btn btn-primary d-flex align-items-center"
+                            onClick={''}
+                        >
+                            <AddIcon />
+                            Novo
+                        </button>
+                    </Link>
+
+                    </div>
                 </div>
                 <hr />
 
@@ -54,7 +71,7 @@ const ResultProducts = () => {
                         </tr>
                     </thead>
                     <tbody id="listagem-produtos">
-                        {isLoading? (
+                        {isLoading ? (
                             <>
                                 <LoadingSpinner />
                             </>

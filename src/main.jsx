@@ -13,6 +13,8 @@ import ViewClient from './components/ViewClient/ViewClient';
 import EditClient from './components/EditClient/EditClient';
 import EditProduct from './components/EditProduct/EditProduct';
 import ViewProduct from './components/ViewProduct/ViewProduct'
+import NewProduct from './components/NewProduct/NewProduct';
+
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/product',
         element: <Product />
+      },
+      {
+        path: '/product/newProduct',
+        element: <NewProduct />
       },
       {
         path: '/product/viewProduct/:cpf',
