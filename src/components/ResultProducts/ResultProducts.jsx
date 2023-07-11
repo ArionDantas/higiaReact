@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 
 
-const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/all';
+const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/customers/all';
 
 const getProducts = async () => {
     const response = await axios.get(apiKey);
@@ -18,48 +18,20 @@ const getProducts = async () => {
 
 const ResultProducts = () => {
 
-    // function dateFormatter(data) {
-    //     const dataObject = new Date(data);
-    //     const dia = dataObject.getDate();
-    //     const mes = dataObject.getMonth() + 1;
-    //     const ano = dataObject.getFullYear();
-    //     const dataFormatted = `${dia < 10 ? '0' + dia : dia}/${mes < 10 ? '0' + mes : mes}/${ano}`
-    //     return dataFormatted
-    // }
-
     const { data: initialData, isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: getProducts
     });
 
     const [data, setData] = useState([]);
-    const [filteredData, setFilteredDataLocal] = useState([]);
 
     useEffect(() => {
         setData(initialData);
-        setFilteredData(initialData);
     }, [initialData]);
-
-    // const handleFilter = () => {
-
-    //     const filteredProducts = data.filter(client => {
-    //         const nameMatch = client.firstName.toLowerCase().includes(nameFilter.toLowerCase());
-    //         const emailMatch = client.email.toLowerCase().includes(emailFilter.toLowerCase());
-    //         const cpfMatch = client.cpf.includes(cpfFilter);
-    //         return nameMatch && emailMatch && cpfMatch;
-    //     });
-    //         setFilteredData(filteredProducts);
-    // };
-
 
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
-            <FiltersProduct
-                data={data}
-                setData={setData}
-                setFilteredData={setFilteredDataLocal}
-                handleFilter={data}
-            />
+            <FiltersProduct />
 
             <div className="table-result shadow px-2 py-3 mt-4 rounded">
 
@@ -87,10 +59,10 @@ const ResultProducts = () => {
                                 <LoadingSpinner />
                             </>
                         ) : (
-                            filteredData?.map(product => (
+                            data?.map(product => (
                                 <tr key={product.ean}>
-                                    <td>{product.ean}</td>
-                                    <td>{product.name}</td>
+                                    <td>{product.cpf}</td>
+                                    <td>{product.firstName}</td>
                                     <td>{product.description}</td>
                                     <td>{product.type}</td>
                                     <td>{'R$' + product.value}</td>
@@ -103,7 +75,7 @@ const ResultProducts = () => {
                                                     />
                                                 </button>
                                             </Link>
-                                            <Link to={`/product/viewProduct/1`}>
+                                            <Link to={`/product/editProduct/1`}>
                                                 <button type="button" className="btn btn-danger">
                                                     <EditIcon />
                                                 </button>

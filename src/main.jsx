@@ -11,6 +11,8 @@ import Search from './routes/Search'
 import Dashboard from './routes/Dashboard'
 import ViewClient from './components/ViewClient/ViewClient';
 import EditClient from './components/EditClient/EditClient';
+import EditProduct from './components/EditProduct/EditProduct';
+import ViewProduct from './components/ViewProduct/ViewProduct'
 
 const router = createBrowserRouter([
   {
@@ -35,17 +37,26 @@ const router = createBrowserRouter([
         element: <Cliente />
       },
       {
-        path: '/product',
-        element: <Product />
-      },
-      {
         path: '/client/viewClient/:cpf',
         element: <ViewClient />
       },
       {
         path: '/client/editClient/:cpf',
         element: <EditClient />
+      },
+      {
+        path: '/product',
+        element: <Product />
+      },
+      {
+        path: '/product/viewProduct/:cpf',
+        element: <ViewProduct />
+      },
+      {
+        path: '/product/editProduct/:cpf',
+        element: <EditProduct />
       }
+
     ]
   }
 ])

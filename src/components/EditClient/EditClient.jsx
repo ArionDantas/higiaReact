@@ -59,7 +59,7 @@ const EditClient = () => {
 
     const handleSubmit = async () => {
 
-        const { cpf, email, password, firstName, lastName, phone, birthDate, isActive } = editedClient.content
+        const { cpf, email, password, firstName, lastName, birthDate, phone, isActive } = editedClient.content
 
         try {
             const response = await axios.post('https://api-farmacia-higia-java-d263a377630d.herokuapp.com/customers/', {
@@ -70,7 +70,8 @@ const EditClient = () => {
                     firstName: firstName,
                     lastName: lastName,
                     phone: phone,
-                    birthDate: birthDate,
+                    // birthDate: birthDate,
+                    birthDate: '2023-07-04T00:00:00.000+00:00',
                     isActive: isActive
                 }
             }, {

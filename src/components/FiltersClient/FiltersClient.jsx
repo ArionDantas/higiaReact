@@ -2,6 +2,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import TuneIcon from '@mui/icons-material/Tune';
+import $ from "jquery";
 
 const FiltersClient = ({ data, setFilteredData }) => {
   const [nameFilter, setNameFilter] = useState('');
@@ -21,63 +22,15 @@ const FiltersClient = ({ data, setFilteredData }) => {
   console.log(data);
 
   const handleFilter = () => {
-    const filteredClients = data.filter(client => {
-      console.log("birthDateFilter => " + birthDateFilter);
-      // const birthDateMatch = client.birthDate.includes(birthDateFilter);
-      const nameMatch = client.firstName.toLowerCase().includes(nameFilter.toLowerCase());
-      const emailMatch = client.email.toLowerCase().includes(emailFilter.toLowerCase());
-      const cpfMatch = client.cpf.includes(cpfFilter)
 
-      // let birthDateMatch = true;
-      // if (client.birthDate && birthDateFilter) {
-      //   const formattedClientBirthDate = formatBirthDate(client.birthDate);
-      //   const formattedFilterBirthDate = formatBirthDate(birthDateFilter);
-      //   birthDateMatch = formattedClientBirthDate.includes(formattedFilterBirthDate);
-      // }
-
-      // const formattedBirthDate = formatBirthDate(client.birthDate);
-      // let birthDateMatch = formattedBirthDate.includes(birthDateFilter);
-
-      const formattedBirthDate = formatBirthDate(client.birthDate);
-      const birthDateMatch = formattedBirthDate.includes(birthDateFilter);
-
-      console.log(birthDateMatch);
-
-      return nameMatch && emailMatch && cpfMatch && birthDateMatch;
+    $(document).ready(function(){
+      $("#inputNomeClientePesquisa").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#listagem-clientes tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
     });
-    setFilteredData(filteredClients);
-  };
-
-  // const formatBirthDate = (value) => {
-  //   const parts = value.split('/');
-  //   if (parts.length === 3) {
-  //     const day = parts[0].padStart(2, '0');
-  //     const month = parts[1].padStart(2, '0');
-  //     const year = parts[2];
-  //     return `${day}/${month}/${year}`;
-  //   }
-  //   return value;
-  // };
-
-  const formatBirthDate = (value) => {
-    if (!value) {
-      return ''; // Retorna uma string vazia se o valor for null ou undefined
-    }
-    console.log('Value =>' + value);
-    const formattedValue = value
-      .replace(/\D/g, '') // Remove caracteres não numéricos
-      .replace(/(\d{2})(\d)/, '$1/$2') // Coloca uma barra após os primeiros dois dígitos
-      .replace(/(\d{2})(\d)/, '$1/$2'); // Coloca uma barra após os próximos dois dígitos
-
-    console.log('Valor formatado => ' + formattedValue);
-    return formattedValue;
-  };
-
-
-  const handleChangeBirthDate = (e) => {
-    const formattedValue = formatBirthDate(e.target.value);
-    console.log('Valor formatado => ' + formattedValue);
-    setBirthDateFilter(formattedValue);
   };
 
   return (
@@ -88,7 +41,19 @@ const FiltersClient = ({ data, setFilteredData }) => {
       </div>
       <hr />
       <div className="row">
-        <div className="col">
+      <div className="col">
+          <div className="mb-3">
+            <label htmlFor="inputNomeClientePesquisa" className="form-label">Pesquisar cliente</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputNomeClientePesquisa"
+              placeholder="Pesquisar nome"
+              onChange={handleFilter}
+            />
+          </div>
+        </div>
+        {/* <div className="col">
           <div className="mb-3">
             <label htmlFor="inputNomeClientePesquisa" className="form-label">Nome</label>
             <input
@@ -126,23 +91,9 @@ const FiltersClient = ({ data, setFilteredData }) => {
               onChange={e => setCpfFilter(e.target.value)}
             />
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="row">
-        <div className="col-3">
-          <div className="mb-3">
-            <label htmlFor="inputDataAniversarioClientePesquisa" className="form-label">Data</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputDataAniversarioClientePesquisa"
-              value={birthDateFilter}
-              onChange={handleChangeBirthDate}
-              placeholder="dd/mm/yyyy"
-            />
-          </div>
-        </div>
-      </div>
+
       <div className="buttons d-flex justify-content-end gap-1">
         <button
           type="button"
@@ -172,3 +123,4 @@ const FiltersClient = ({ data, setFilteredData }) => {
 };
 
 export default FiltersClient;
+  

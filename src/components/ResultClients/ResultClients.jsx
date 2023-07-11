@@ -33,37 +33,29 @@ const ResultClients = () => {
     });
 
     const [data, setData] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
 
     useEffect(() => {
         setData(initialData);
-        setFilteredData(initialData);
     }, [initialData]);
 
-    const handleFilter = () => {
+    // const handleFilter = () => {
 
-        const filteredClients = data.filter(client => {
-            const nameMatch = client.firstName.toLowerCase().includes(nameFilter.toLowerCase());
-            const emailMatch = client.email.toLowerCase().includes(emailFilter.toLowerCase());
-            const cpfMatch = client.cpf.includes(cpfFilter);
-            let birthDateMatch = formattedBirthDate.includes(birthDateFilter);
-F   
-            console.log(birthDateMatch);
+    //     const filteredClients = data.filter(client => {
+    //         const nameMatch = client.firstName.toLowerCase().includes(nameFilter.toLowerCase());
+    //         const emailMatch = client.email.toLowerCase().includes(emailFilter.toLowerCase());
+    //         const cpfMatch = client.cpf.includes(cpfFilter);
+    //         const birthDateMatch = formattedBirthDate.includes(birthDateFilter);
+    //         console.log(birthDateMatch);
 
-            return nameMatch && emailMatch && cpfMatch && birthDateMatch
-        });
-        setFilteredData(filteredClients);
+    //         return nameMatch && emailMatch && cpfMatch && birthDateMatch
+    //     });
+    //     setFilteredData(filteredClients);
 
-    };
+    // };
 
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
-            <FiltersClient
-                data={data}
-                setData={setData}
-                setFilteredData={setFilteredData}
-                handleFilter={handleFilter}
-            />
+            <FiltersClient />
 
             <div className="table-result shadow px-2 py-3 mt-4 rounded">
 
@@ -90,7 +82,7 @@ F
                                 <LoadingSpinner />
                             </>
                         ) : (
-                            filteredData?.map(clients => (
+                            data?.map(clients => (
                                 <tr key={clients.cpf}>
                                     <td>{clients.cpf}</td>
                                     <td>{clients.firstName} {clients.lastName}</td>
