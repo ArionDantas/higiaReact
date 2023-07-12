@@ -56,11 +56,11 @@ const router = createBrowserRouter([
         element: <NewProduct />
       },
       {
-        path: '/product/viewProduct/:cpf',
+        path: '/product/viewProduct/:id',
         element: <ViewProduct />
       },
       {
-        path: '/product/editProduct/:cpf',
+        path: '/product/editProduct/:id',
         element: <EditProduct />
       },
       {

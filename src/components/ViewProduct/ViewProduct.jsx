@@ -11,18 +11,18 @@ import ErrorSearch from '../ErrorSearch/ErrorSearch';
 
 const ViewClient = () => {
 
-    const { cpf } = useParams();
+    const { id } = useParams();
 
     // const location = useLocation();
     // const cpf = location.state.cpf.value;
 
-    console.log(cpf);
+    console.log(id);
 
-    const apiKey = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/customers/${cpf}`;
+    const apiKey = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${id}`;
 
     const getProduct = async () => {
         const response = await axios.get(apiKey);
-        return response.data;
+        return response.data.content;
     };
 
     const { data: product, isLoading, isError } = useQuery({
@@ -57,7 +57,20 @@ const ViewClient = () => {
 
                                         (
                                             <div className='card-view-produto'>
+
                                                 <div className="row">
+                                                    <div className="col-4">
+                                                        <div className="form-group mb-3">
+                                                            <label htmlFor="idProductView">ID:</label>
+                                                            <input
+                                                                id="idProductView"
+                                                                className="form-control"
+                                                                type="text"
+                                                                disabled
+                                                                value={product.id == null ? '' : product.id}
+                                                            />
+                                                        </div>
+                                                    </div>
                                                     <div className="col">
                                                         <div className="form-group mb-3">
                                                             <label htmlFor="eanProdutoView">Código de barras:</label>
@@ -66,10 +79,15 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.content.cpf == null ? '' : product.content.cpf}
+                                                                value={product.ean == null ? '' : product.ean}
                                                             />
                                                         </div>
                                                     </div>
+                                                </div>
+
+
+                                                <div className="row">
+
                                                     <div className="col">
                                                         <div className="form-group mb-3">
                                                             <label htmlFor="nomeProdutoView">Nome:</label>
@@ -78,13 +96,10 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.content.firstName == null ? '' : product.content.firstName}
+                                                                value={product.name == null ? '' : product.name}
                                                             />
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div className="row">
                                                     <div className="col-4">
                                                         <div className="form-group mb-3">
                                                             <label htmlFor="tipoProdutoView">Tipo:</label>
@@ -93,12 +108,12 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.content.type == null ? '' : product.content.type}
+                                                                value={product.type == null ? '' : product.type}
                                                             />
                                                         </div>
                                                     </div>
-
-
+                                                </div>
+                                                <div className="row">
 
                                                     <div className="col">
                                                         <div className="form-group mb-3">
@@ -108,7 +123,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.content.description == null ? '' : product.content.description}
+                                                                value={product.description == null ? '' : product.description}
                                                             />
                                                         </div>
                                                     </div>
@@ -123,7 +138,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={`R$` + product.content.value == null ? '' : product.content.value}
+                                                                value={`R$` + product.value == null ? '' : product.value}
                                                             />
                                                         </div>
                                                     </div>
@@ -136,7 +151,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.content.saleFree == null ? '' : product.content.saleFree}
+                                                                value={product.saleFree == null ? '' : product.saleFree}
                                                             />
                                                         </div>
                                                     </div>

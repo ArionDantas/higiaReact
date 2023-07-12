@@ -10,11 +10,11 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import AddIcon from '@mui/icons-material/Add';
 
 
-const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/customers/all';
+const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/all';
 
 const getProducts = async () => {
     const response = await axios.get(apiKey);
-    return response.data;
+    return response.data.content;
 };
 
 const ResultProducts = () => {
@@ -47,7 +47,7 @@ const ResultProducts = () => {
                         <button
                             type="button"
                             className="btn btn-primary d-flex align-items-center"
-                            onClick={''}
+                            // onClick={''}
                         >
                             <AddIcon />
                             Novo
@@ -61,12 +61,12 @@ const ResultProducts = () => {
                 <table className="table table-hover align-middle">
                     <thead className='table'>
                         <tr>
+                            <th>ID</th>
                             <th>Código de barras</th>
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Tipo</th>
                             <th>Valor</th>
-                            <th>Desconto</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -77,22 +77,23 @@ const ResultProducts = () => {
                             </>
                         ) : (
                             data?.map(product => (
-                                <tr key={product.ean}>
-                                    <td>{product.cpf}</td>
+                                <tr key={product.id}>
+                                    <td>{product.id}</td>
+                                    <td>{product.ean}</td>
                                     <td>{product.firstName}</td>
                                     <td>{product.description}</td>
                                     <td>{product.type}</td>
-                                    <td>{'R$' + product.value}</td>
-                                    <td>{'R$' + product.saleFree}</td>
+                                    <td>{'R$' + `FAKE VALUE`}</td>
+                                    {/* <td>{'R$' + product.value}</td> */}
                                     <td className="text-center">
                                         <div className='d-flex gap-1'>
-                                            <Link to={`/product/viewProduct/1`}>
+                                            <Link to={`/product/viewProduct/${product.id}`}>
                                                 <button type="button" className="btn btn-primary">
                                                     <VisibilityIcon
                                                     />
                                                 </button>
                                             </Link>
-                                            <Link to={`/product/editProduct/1`}>
+                                            <Link to={`/product/editProduct/${product.id}`}>
                                                 <button type="button" className="btn btn-danger">
                                                     <EditIcon />
                                                 </button>
